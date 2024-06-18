@@ -15,6 +15,13 @@ const bool Deus = true;
 
 using namespace std;
 
+void get_mouse_pos();
+void mover_mouse(int finalX, int finalY);
+void click_esquerdo();
+
+void PressKey(WORD key);
+void digitar(string palavra);
+
 void cor(int cor);
 void gotoxy(int x, int y);
 
@@ -33,6 +40,8 @@ void opcao5();
 
 void cadastro(bool professor, string email, string senha);
 void troca_senha(string email);
+bool aluno_defasado(int notas[], int tamanho);
+void leitor_mental(string comida);
 
 class Usuario
 {
@@ -183,6 +192,84 @@ int main()
 	}
 
 	return 0;
+}
+
+void get_mouse_pos()
+{
+    POINT start;
+    GetCursorPos(&start);
+    cout << "X: " << start.x << endl;
+    cout << "Y: " << start.y << endl;
+}
+
+void mover_mouse(int finalX, int finalY)
+{
+    POINT start;
+    GetCursorPos(&start);
+    double deltaX = (finalX - start.x) / 50;
+    double deltaY = (finalY - start.y) / 50;
+
+    for (int i=0; i<=50; i++) 
+	{
+        int x = static_cast<int>(start.x + (i * deltaX));
+        int y = static_cast<int>(start.y + (i * deltaY));
+        SetCursorPos(x, y);
+        Sleep(10);
+	}
+	SetCursorPos(finalX, finalY);
+}
+
+void click_esquerdo()
+{
+    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+    Sleep(50);
+    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+}
+
+
+
+void PressKey(WORD key) 
+{
+    INPUT input = {0};
+    input.type = INPUT_KEYBOARD;
+    input.ki.wVk = key;
+    input.ki.dwFlags = 0;
+
+
+    SendInput(1, &input, sizeof(INPUT));
+
+    input.ki.dwFlags = KEYEVENTF_KEYUP; 
+    SendInput(1, &input, sizeof(INPUT));
+}
+
+void digitar(string palavra) 
+{
+    for (int i=0; i<palavra.length(); i++)
+	{
+		char c = palavra[i];
+		if(c == ';' || i == 0)
+		{
+			INPUT input;
+		    input.type = INPUT_KEYBOARD;
+		    input.ki.wVk = VK_LSHIFT;
+		    input.ki.wScan = 0;
+		    input.ki.dwFlags = 0;
+		    input.ki.time = 0;
+		    input.ki.dwExtraInfo = 0;
+		    SendInput(1, &input, sizeof(INPUT));
+			
+			PressKey(VkKeyScan(c));
+			
+		    input.ki.dwFlags = KEYEVENTF_KEYUP;
+		    SendInput(1, &input, sizeof(INPUT));
+			
+		}
+		else
+		{
+			PressKey(VkKeyScan(c));
+		}
+        Sleep(50);
+    }
 }
 
 void cor(int cor)
@@ -1478,4 +1565,105 @@ void troca_senha(string email)
 		}
 	}
 }
+
+bool aluno_defasado(int notas[], int tamanho)
+{
+	if(tamanho < 3)
+	{
+		return false;
+	}
+	
+	int notasDigitadas=0, ultimaNota;
+	float media=0;
+	
+	for(int i=0; i<tamanho; i++)
+	{
+		if(notas[i] >= 0)
+		{
+			notasDigitadas++;
+			ultimaNota = notas[i];
+			media += notas[i];
+		}
+	}
+	
+	if(notasDigitadas < 2)
+	{
+		return false;
+	}
+	
+	media -= notas[notasDigitadas-1];
+	media /= notasDigitadas-1;
+	
+	if(ultimaNota < media)
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+void leitor_mental(string comida)
+{
+	string esfomeador = comida + " gostosa";
+	
+	mover_mouse(1330, 20);
+	click_esquerdo();
+	Sleep(700);
+	digitar("Chrome");
+	Sleep(300);
+	mover_mouse(651, 105);
+	click_esquerdo();
+	Sleep(2000);
+	
+	mover_mouse(1171, 100);   click_esquerdo();   Sleep(250);
+	mover_mouse(41, 97);
+	click_esquerdo();
+	Sleep(1000);
+	
+	mover_mouse(292, 18);
+	click_esquerdo();
+	Sleep(500);
+	mover_mouse(292, 63);
+	click_esquerdo();
+	digitar(esfomeador);
+	PressKey(VK_RETURN);
+	Sleep(2000);
+	mover_mouse(250, 199);
+	click_esquerdo();
+	Sleep(1000);
+	
+	for(int i=0; i<40; i++)
+	{
+		PressKey(VK_DOWN);
+		Sleep(200);
+	}
+	
+	Sleep(1000);
+	mover_mouse(137, 17);
+	click_esquerdo();
+	Sleep(500);
+	mover_mouse(432, 375);
+	click_esquerdo();
+	Sleep(500);
+	
+	mover_mouse(1330, 20);
+	click_esquerdo();
+	Sleep(700);
+	digitar("Bloco de Notas");
+	Sleep(300);
+	mover_mouse(651, 105);
+	click_esquerdo();
+	Sleep(500);
+	
+	mover_mouse(826, 81);
+	click_esquerdo();
+	Sleep(200);
+	click_esquerdo();
+	digitar("Sua mente diz;");
+	PressKey(VK_RETURN);
+	PressKey(VK_RETURN);
+	digitar("Nussa que fome ze...");
+	
+}
+
 const bool deus=false;
