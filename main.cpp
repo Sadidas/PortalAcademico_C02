@@ -87,7 +87,7 @@ public:
 	void setProfessor(bool prof)
 	{
 		this->professor = prof;
-	}
+  }
 
 };
 
@@ -553,7 +553,7 @@ void opcao1()
 		else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'à')
+			if(apertado != '�')
 			{
 				if(counter == 0 && !direita)
 				{
@@ -807,7 +807,7 @@ void opcao2(bool professor)
 		else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'à')
+			if(apertado != '�')
 			{
 				if(counter == 0)
 				{
@@ -925,7 +925,6 @@ void opcao3()
 		gotoxy(2, 6);
 		cor(Set[1]);
 		cout << "|" << "Qual é sua comida favorita? ";
-
 		gotoxy(31, 6);
 		cor(Set[1]);
 		cout << comida << right << setfill(' ') << setw(7) << "|"
@@ -990,7 +989,7 @@ void opcao3()
 		else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'à')
+			if(apertado != '�')
 			{
 				if(counter == 0 && !direita)
 				{
@@ -1107,7 +1106,7 @@ void opcao3()
 
 void opcao4()
 {
-	cout << endl << " Opção 4" << endl;
+	cout << endl << " Op��o 4" << endl;
 }
 
 
@@ -1170,7 +1169,6 @@ void cadastro(bool professor, string email, string senha)
 		gotoxy(2, 6);
 		cor(Set[1]);
 		cout << "|" << "Qual é sua comida favorita? ";
-
 		gotoxy(31, 6);
 		cor(Set[1]);
 		cout << comida << right << setfill(' ') << setw(7) << "|"
@@ -1227,7 +1225,7 @@ void cadastro(bool professor, string email, string senha)
 		else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'à')
+			if(apertado != '�')
 			{
 				if(counter == 0)
 				{
@@ -1420,7 +1418,7 @@ void troca_senha(string email)
 		if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'à' && counter == 0 && !direita)
+			if(apertado != '�' && counter == 0 && !direita)
 			{
 				fillSDinamico++;
 				senha.append(1, apertado);
@@ -1480,8 +1478,4 @@ void troca_senha(string email)
 		}
 	}
 }
-
-
-
-
 const bool deus=false;
