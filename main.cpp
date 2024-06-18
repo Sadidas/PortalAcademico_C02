@@ -55,7 +55,13 @@ int main(){
 	
 	//while(Deus){ get_mouse_pos(); Sleep(1000);}
 	
-	setlocale(LC_ALL, "Portuguese");
+	int notas[] = {93, 70, 90, -1};
+	int tamanho = sizeof(notas) / sizeof(notas[0]);
+	
+	cout << aluno_defasado(notas, tamanho);
+	
+	
+	/*setlocale(LC_ALL, "Portuguese");
 	
 	
 	while(Deus){
@@ -73,10 +79,10 @@ int main(){
 				opcao3();
 				break;
 			case 4:
-				cout << endl << "  OpÃ§Ã£o 4" << endl;
+				cout << endl << "  Opção 4" << endl;
 				break;
 		}
-	}
+	}*/
 	
 	return 0;
 }
@@ -222,7 +228,7 @@ int tela_inicial()
 
         gotoxy(0,10);
         cor(Set[3]);
-        cout<<"|  4. CrÃ©ditos" << right << setfill(' ') << setw(37) << "|";
+        cout<<"|  4. Créditos" << right << setfill(' ') << setw(37) << "|";
         
         gotoxy(0,11);
         cor(7);
@@ -522,7 +528,7 @@ void opcao1()
         else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'Ã ')
+			if(apertado != 'à')
 			{
 				if(counter == 0 && !direita)
 				{
@@ -771,7 +777,7 @@ void opcao2(bool professor)
         else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'Ã ')
+			if(apertado != 'à')
 			{
 				if(counter == 0)
 				{
@@ -887,7 +893,7 @@ void opcao3()
 		
 		gotoxy(2,6);
 		cor(Set[1]);
-		cout << "|" << "Qual Ã© sua comida favorita? ";
+		cout << "|" << "Qual é sua comida favorita? ";
 		
 		gotoxy(31, 6);
 		cor(Set[1]);
@@ -952,7 +958,7 @@ void opcao3()
         else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'Ã ')
+			if(apertado != 'à')
 			{
 				if(counter == 0 && !direita)
 				{
@@ -1066,7 +1072,7 @@ void opcao3()
 
 void opcao4()
 {
-	cout << endl << " OpÃ§Ã£o 4" << endl;
+	cout << endl << " Opção 4" << endl;
 }
 
 
@@ -1127,7 +1133,7 @@ void cadastro(bool professor, string email, string senha)
 		
 		gotoxy(2,6);
 		cor(Set[1]);
-		cout << "|" << "Qual Ã© sua comida favorita? ";
+		cout << "|" << "Qual é sua comida favorita? ";
 		
 		gotoxy(31, 6);
 		cor(Set[1]);
@@ -1185,7 +1191,7 @@ void cadastro(bool professor, string email, string senha)
         else if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'Ã ')
+			if(apertado != 'à')
 			{
 				if(counter == 0)
 				{
@@ -1369,7 +1375,7 @@ void troca_senha(string email)
         if(!e_especial(key))
 		{
 			char apertado = static_cast<char>(key);
-			if(apertado != 'Ã ' && counter == 0 && !direita)
+			if(apertado != 'à' && counter == 0 && !direita)
 			{
 				fillSDinamico++;
 				senha.append(1, apertado);
